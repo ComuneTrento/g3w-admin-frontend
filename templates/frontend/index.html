@@ -49,6 +49,30 @@
     .subtitle {
         color: {{ home_image.subtitle_color }};
     }
+
+.buttonl {
+  padding: 5px 5px;
+  // font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  width: 30%;
+}
+
+.buttonl:hover {background-color: #3e8e41}
+
+.buttonl:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
 </style>
 {% if SETTINGS.G3WSUITE_CUSTOM_STATIC_URL %}
 {% for css in SETTINGS.G3WSUITE_CUSTOM_CSS %}
@@ -165,8 +189,29 @@
 <script>
     var lightbox = null;
     $(document).ready(function($){
+        var $login_link = $('a.products');
 
+        //reset click hooks
+        $login_link.off('click');
+
+        // redirect
+        $login_link.on('click', function(e){
+            window.location.href = "/admin/ad_trento/login/?next=/";
+        });
     });
+
+    $(document).ready(function() {
+       $(".map-description").hide();
+    });
+    $(document).on('click', '.buttonl', function(event) {
+    //   $('.buttonl').on('click', function(event){
+         event.stopPropagation();
+         event.stopImmediatePropagation();
+	 // alert($(this).next());
+         $(this).next().toggle();
+       });
+    //});
+	
 
 </script>
 </body>
